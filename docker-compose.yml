@@ -1,0 +1,21 @@
+version: "3.8"
+services:
+  react-app:
+    stdin_open: true
+    build:
+      context: .
+      dockerfile: Dockerfile.dev
+    ports:
+      - "3000:3000"
+    volumes:
+      - /opt/app/node_modules
+      - .:/opt/app
+  tests:
+    stdin_open: true
+    build:
+      context: .
+      dockerfile: Dockerfile.dev
+    volumes:
+      - /opt/app/node_modules
+      - .:/opt/app
+    command: ["npm", "run", "test"]
